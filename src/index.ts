@@ -7,7 +7,7 @@ app.use(helmet());
 
 app.use(express.static('public'));
 
-let port = 3000;
+let port = 8080;
 app.listen(port, () => {
 	console.info('Server', process.pid, 'listening on port', port);
 });
