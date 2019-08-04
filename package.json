@@ -4,17 +4,17 @@
   },
   "dependencies": {
     "express": "4.17.1",
-    "helmet": "3.18.0",
-    "source-map-support": "0.5.12"
+    "helmet": "3.20.0",
+    "source-map-support": "0.5.13"
   },
   "description": "",
   "devDependencies": {
-    "@types/express": "4.16.1",
+    "@types/express": "4.17.0",
     "@types/helmet": "0.0.43",
-    "@types/node": "12.0.4",
+    "@types/node": "12.6.9",
     "rimraf": "2.6.3",
-    "tslint": "5.17.0",
-    "typescript": "3.5.1"
+    "tslint": "5.18.0",
+    "typescript": "3.5.3"
   },
   "homepage": "https://github.com/boinged/website#readme",
   "name": "shipton",

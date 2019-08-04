@@ -5,7 +5,11 @@
     ],
     "rules": {
         "indent": [true, "tabs", 2],
+        "ordered-imports": [true, {
+            "grouped-imports": true
+        }],
         "quotemark": [true, "single"],
+        "no-any": true,
         "no-console": false,
         "prefer-const": false
     }
