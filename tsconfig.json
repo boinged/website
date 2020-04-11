@@ -6,9 +6,10 @@
         "outDir": "dist",
         "sourceMap": true,
         "strict": true,
-        "target": "es2018",
+        "target": "es2020"
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "spec/**/*", "jasmine.json"
     ]
 }
