@@ -18,4 +18,4 @@ RUN rm tsconfig.json
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD ["node", "-r", "source-map-support/register", "build/index.js"]
