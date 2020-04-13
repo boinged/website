@@ -18,4 +18,7 @@ RUN rm tsconfig.json
 
 EXPOSE 8080
 
-CMD ["node", "-r", "source-map-support/register", "build/index.js"]
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--"]
+
+CMD ["node", "-r", "source-map-support/register", "dist/index.js"]
