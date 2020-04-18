@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import { RouteGenerator } from './routeGenerator';
+import { Config } from './config';
 
 let app = express();
 
@@ -11,7 +12,7 @@ app.use(express.static('public'));
 let routeGenerator = new RouteGenerator();
 app.use('/', routeGenerator.router);
 
-let port = 8080;
+let port = Config.port;
 app.listen(port, () => {
-	console.info('Server', process.pid, 'listening on port', port);
+	console.info('web server', process.pid, 'listening on port', port);
 });
