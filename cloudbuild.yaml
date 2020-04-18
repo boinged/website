@@ -1,15 +1,17 @@
 steps:
-- name: node
+- name: node:12
   id: Install
   entrypoint: npm
   args: ['install']
-- name: node
+- name: node:12
   id: Test
   entrypoint: npm
   args: ['test']
-- name: 'gcr.io/cloud-builders/docker'
+- name: node:12
   id: Build
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/web:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  id: Push
-  args: ['push', 'gcr.io/$PROJECT_ID/web:$SHORT_SHA']
+  entrypoint: npm
+  args: ['build']
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Deploy
+  args: ['app', 'deploy']
+  timeout: '1600s'
