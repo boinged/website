@@ -10,7 +10,8 @@ app.use(helmet());
 app.use(express.static('public'));
 
 let routeGenerator = new RouteGenerator();
-app.use('/', routeGenerator.router);
+let router = routeGenerator.createRouter();
+app.use('/', router);
 
 let port = Config.port;
 app.listen(port, () => {

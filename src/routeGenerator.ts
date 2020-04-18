@@ -1,13 +1,17 @@
 import express, {Router} from 'express';
 import { Health } from './endpoint/health';
+import { Root } from "./endpoint/root";
 
 export class RouteGenerator {
-	router: Router;
+    createRouter(): Router {
+    	let router = express.Router();
 
-	constructor() {
-		this.router = express.Router();
+        let root = new Root();
+        router.get('/', root.execute.bind(root));
 
-		let endpoints = [new Health()];
-		endpoints.forEach((endpoint) => this.router.get('/' + endpoint.constructor.name, endpoint.execute.bind(endpoint)));
-	}
+        let health = new Health();
+        router.get('/healthz', health.execute.bind(health));
+
+        return router;
+    }
 }
