@@ -15,9 +15,9 @@ steps:
   id: Prune
   entrypoint: npm
   args: ['prune', '--production']
-- name: gcr.io/stevenshipton-com/envsubst
+- name: gcr.io/$PROJECT_ID/envsubst
   id: Substitute
-  env: ['SERVICE_URL=${_SERVICE_URL}']
+  env: ['SERVICE_URL=$_SERVICE_URL']
   args: ['app.yaml']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
