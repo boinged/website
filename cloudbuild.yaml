@@ -17,7 +17,7 @@ steps:
   args: ['prune', '--production']
 - name: gcr.io/$PROJECT_ID/envsubst
   id: Substitute
-  env: ['SERVICE_URL=$_SERVICE_URL']
+  env: ['SERVICE_IP=$_SERVICE_IP']
   args: ['app.yaml']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
