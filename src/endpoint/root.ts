@@ -14,7 +14,7 @@ export class Root implements IEndpoint {
         try {
             let result;
             if (this.serviceUrl) {
-                    result = await got(this.serviceUrl);
+                    result = await got('content', {prefixUrl: this.serviceUrl}).json();
             } else {
                     result = 'service URL undefined';
             }
