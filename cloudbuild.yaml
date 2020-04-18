@@ -10,7 +10,7 @@ steps:
 - name: node:12
   id: Build
   entrypoint: npm
-  args: ['build']
+  args: ['run', 'build']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   args: ['app', 'deploy']
