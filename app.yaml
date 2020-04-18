@@ -1,4 +1,4 @@
 runtime: nodejs12
 
 env_variables:
-  SERVICE_URL: ${SERVICE_URL}
+  SERVICE_IP: ${SERVICE_IP}
