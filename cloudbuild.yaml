@@ -11,6 +11,10 @@ steps:
   id: Build
   entrypoint: npm
   args: ['run', 'build']
+- name: node:12
+  id: Prune
+  entrypoint: npm
+  args: ['prune', '--production']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   args: ['app', 'deploy']
