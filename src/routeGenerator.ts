@@ -7,7 +7,7 @@ export class RouteGenerator {
     createRouter(): Router {
     	let router = express.Router();
 
-        let root = new Root(Config.serviceUrl);
+        let root = new Root(Config.serviceIP);
         router.get('/', root.execute.bind(root));
 
         let health = new Health();
