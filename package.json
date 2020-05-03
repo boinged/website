@@ -2,6 +2,7 @@
   "dependencies": {
     "fastify": "2.14.0",
     "fastify-helmet": "3.0.2",
+    "fastify-static": "2.7.0",
     "got": "11.1.0",
     "pino": "6.2.1",
     "source-map-support": "0.5.19"
