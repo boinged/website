@@ -1,27 +1,22 @@
-import express from 'express';
+import { FastifyRequest } from 'fastify';
 import got from 'got';
 
 import { IEndpoint } from './iEndpoint';
 
 export class Root implements IEndpoint {
-    serviceIP: string | undefined;
+	serviceIP: string;
 
-    constructor(serviceIP: string | undefined) {
-        this.serviceIP = serviceIP;
-    }
+	constructor(serviceIP: string) {
+		this.serviceIP = serviceIP;
+	}
 
-	public async execute(request: express.Request, response: express.Response): Promise<void> {
-        try {
-            let result;
-            if (this.serviceIP) {
-                result = await got('content', {prefixUrl: `http://${this.serviceIP}`}).json();
-            } else {
-                result = 'service URL undefined';
-            }
-            console.log(result);
-            response.send(result);
-        } catch (error) {
-            console.error(error);
-        }
+	public async execute(request: FastifyRequest): Promise<string> {
+		let result = '';
+		try {
+			result = await got('content', {prefixUrl: `http://${this.serviceIP}`}).json();
+		} catch (error) {
+			console.error(error);
+		}
+		return result;
 	}
 }

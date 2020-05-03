@@ -1,19 +1,22 @@
-import express from 'express';
-import helmet from 'helmet';
-import { RouteGenerator } from './routeGenerator';
-import { Config } from './config';
+import fastify from 'fastify';
+import helmet from 'fastify-helmet';
 
-let app = express();
+import { Router } from './router/router';
+import { Config } from './config/config';
+import { Logger } from './util/logger';
 
-app.use(helmet());
+const start = async (): Promise<void> => {
+	const server = fastify({logger: Logger});
+	server.register(helmet);
 
-app.use(express.static('public'));
+	if (!Config.serviceIP) {
+		throw new Error('missing service ip');
+	}
 
-let routeGenerator = new RouteGenerator();
-let router = routeGenerator.createRouter();
-app.use('/', router);
+	let router = new Router(Config.serviceIP);
+	server.register(router.applyRoutes.bind(router));
 
-let port = Config.port;
-app.listen(port, () => {
-	console.info('web server', process.pid, 'listening on port', port);
-});
+	await server.listen(Config.port, '::');
+};
+
+start();

@@ -1,9 +1,10 @@
-import express from 'express';
+import { FastifyRequest } from 'fastify';
 
 import { IEndpoint } from './iEndpoint';
 
+
 export class Health implements IEndpoint {
-	public async execute(request: express.Request, response: express.Response): Promise<void> {
-		response.send('OK');
+	async execute(request: FastifyRequest): Promise<string> {
+		return 'OK';
 	}
 }

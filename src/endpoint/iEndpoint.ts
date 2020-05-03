@@ -1,5 +1,5 @@
-import express from 'express';
+import { FastifyRequest } from 'fastify';
 
 export interface IEndpoint {
-	execute(request: express.Request, response: express.Response): Promise<void>;
+	execute(request: FastifyRequest): Promise<string>;
 }

@@ -1,21 +1,21 @@
+
+import { FastifyRequest } from 'fastify';
+
 import {Health} from '../../src/endpoint/health';
-import express from 'express';
 
 describe('health', () => {
-    let endpoint: Health;
-    let request: express.Request;
-    let response: express.Response;
+	let endpoint: Health;
+	let request: FastifyRequest;
 
-    beforeEach(() => {
-        endpoint = new Health();
-        request = {} as express.Request;
-        response = jasmine.createSpyObj('response', ['send']);
-    });
+	beforeEach(() => {
+		endpoint = new Health();
+		request = {} as FastifyRequest;
+	});
 
-    describe('execute', () => {
-        it('responds successfully', () => {
-            endpoint.execute(request, response);
-            expect(response.send).toHaveBeenCalledWith('OK');
-        });
-    });
+	describe('execute', () => {
+		it('replies with a health string', async () => {
+			let reply = await endpoint.execute(request);
+			expect(reply).toEqual('OK');
+		});
+	});
 });
