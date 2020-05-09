@@ -3,25 +3,22 @@
     <title>how</title>
 </head>
 <body>
-    The front end is a GAE Node.js app which gets content from the api server.
+    The front end is hosted on Google App Engine and comprises a Vue.js client and Node.js server. The server calls an endpoint on the api server which queries MongoDB for the content.
     The api server runs on a low availability kubernetes cluster consisting of 2x f1-micro and using HAProxy as an ingress controller instead of the GCP load balancer.
     A stable IP address for the ingress is achieved using kubeIP.
     <p>
     The front end has combined CI/CD and the api service separate CI and CD for manually triggered deployments via git push.
-    The infrastructure is defined and applied using terraform. 
+    The infrastructure is defined and applied using Terraform. 
     <p>
     TODO:
     <ul>
         <li>Store tfstate on GCS</li>
         <li>Update api-env manifest in app cloud build to auto deploy</li>
-        <li>SSL</li>
-        <li>Add endpoint to generate content</li>
+        <li>SSL on api server</li>
         <li>CD for kubeIP and HAProxy</li>
         <li>Run all triggers after provisioning</li>
-        <li>Separate front end and back end</li>
-        <li>Use database to store content</li>
-        <li>gRPC between front-end and back-end (or at least protobufs)</li>
-        <li>socket-io (switch to appengine standard)</li>
+        <li>gRPC between front-end server and api server</li>
+        <li>socket-io</li>
     </ul>
     Built with <a href="https://cloud.google.com/shell">Google Cloud Shell</a> using the following technologies:
     <ul>
@@ -33,6 +30,8 @@
         <li><a href="https://www.haproxy.com/">HAProxy</a></li>
         <li><a href="https://nodejs.org/en/">Node.js</a></li>
         <li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
+		<li><a href="https://www.fastify.io/">Fastify</a></li>
+		<li><a href="https://vuejs.org/">Vue.js</a></li>
     </ul>
     Resources:
     <ul>

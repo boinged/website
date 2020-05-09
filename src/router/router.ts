@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 
 import { Health } from '../endpoint/health';
-import { Root } from '../endpoint/root';
+import { Message } from '../endpoint/message';
 
 export class Router {
 	serviceIP: string;
@@ -14,7 +14,7 @@ export class Router {
 		const health = new Health();
 		server.get('/healthz', health.execute.bind(health));
 
-		const root = new Root(this.serviceIP);
-		server.get('/', root.execute.bind(root));
+		const message = new Message(this.serviceIP);
+		server.get('/message', message.execute.bind(message));
 	}
 }

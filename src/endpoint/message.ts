@@ -3,7 +3,7 @@ import got from 'got';
 
 import { IEndpoint } from './iEndpoint';
 
-export class Root implements IEndpoint {
+export class Message implements IEndpoint {
 	serviceIP: string;
 
 	constructor(serviceIP: string) {
