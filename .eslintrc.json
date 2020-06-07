@@ -17,11 +17,17 @@
 		"@typescript-eslint/no-explicit-any": "error",
 		"eol-last": "error",
 		"import/order": ["error", {
+			"alphabetize": {
+				"order": "asc"
+			},
 			"newlines-between": "always"
 		}],
 		"indent": ["error", "tab"],
 		"lines-between-class-members": "error",
-		"prefer-const": "off",
+		"no-multiple-empty-lines": ["error", {
+			"max": 1
+		}],
+		"object-curly-spacing": "error",
 		"quotes": ["error", "single"],
 		"semi": "error",
 		"space-before-blocks": "error"

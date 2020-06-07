@@ -1,5 +1,5 @@
 
-import { FastifyRequest } from 'fastify';
+import {FastifyRequest} from 'fastify';
 
 import {Health} from '../../src/endpoint/health';
 
@@ -14,7 +14,7 @@ describe('health', () => {
 
 	describe('execute', () => {
 		it('replies with a health string', async () => {
-			let reply = await endpoint.execute(request);
+			const reply = await endpoint.execute(request);
 			expect(reply).toEqual('OK');
 		});
 	});

@@ -1,17 +1,17 @@
-import path from 'path';
+import * as path from 'path';
 
-import fastify from 'fastify';
-import fastifyHelmet from 'fastify-helmet';
-import fastifyStatic from 'fastify-static';
+import {ContentSDK} from 'api-sdk';
+import * as fastify from 'fastify';
+import * as helmet from 'fastify-helmet';
+import * as fastifyStatic from 'fastify-static';
 
-import { Router } from './router/router';
-import { Config } from './config/config';
-import { Logger } from './util/logger';
+import {Config} from './config/config';
+import {Router} from './router/router';
+import {Logger} from './util/logger';
 
 const start = async (): Promise<void> => {
 	const server = fastify({logger: Logger});
-
-	server.register(fastifyHelmet);
+	server.register(helmet);
 
 	server.register(fastifyStatic, {
 		root: path.join(__dirname, '../../public')
@@ -21,7 +21,14 @@ const start = async (): Promise<void> => {
 		throw new Error('missing service ip');
 	}
 
-	let router = new Router(Config.serviceIP);
+	const contentSDK = new ContentSDK(Config.serviceIP + ':50051');
+	try {
+		await contentSDK.connect();
+	} catch (error) {
+		Logger.error(error);
+	}
+
+	const router = new Router(Config.serviceIP, contentSDK);
 	server.register(router.applyRoutes.bind(router));
 
 	await server.listen(Config.port, '::');
