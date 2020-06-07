@@ -10,6 +10,8 @@ import {Router} from './router/router';
 import {Logger} from './util/logger';
 
 const start = async (): Promise<void> => {
+	Logger.info(process.versions);
+
 	const server = fastify({logger: Logger});
 	server.register(helmet);
 
