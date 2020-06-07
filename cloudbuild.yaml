@@ -19,6 +19,10 @@ steps:
   id: Substitute
   env: ['SERVICE_IP=$_SERVICE_IP']
   args: ['app.yaml']
+- name: ubuntu
+  args: ['ls']
+- name: ubuntu
+  args: ['ls', 'node_modules']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   args: ['app', 'deploy']
