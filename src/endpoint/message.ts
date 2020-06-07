@@ -17,6 +17,7 @@ export class Message implements IEndpoint {
 	}
 
 	public async execute(request: FastifyRequest): Promise<string> {
+		/*
 		try {
 			const grpcResult = await this.contentSDK.getContent();
 			Logger.info(`got grpc result ${grpcResult}`);
@@ -24,6 +25,7 @@ export class Message implements IEndpoint {
 		} catch {
 			// ignore
 		}
+		*/
 
 		let result = '';
 		try {
