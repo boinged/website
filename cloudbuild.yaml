@@ -3,11 +3,6 @@ steps:
   id: Install
   entrypoint: npm
   args: ['ci']
-- name: ubuntu
-  args: ['ls', 'node_modules']
-- name: node:12
-  entrypoint: npm
-  args: ['ls', 'api-proto']
 - name: node:12
   id: Test
   entrypoint: npm
@@ -19,7 +14,7 @@ steps:
 - name: node:12
   id: Prune
   entrypoint: npm
-  args: ['prune', '--production']
+  args: ['ci', '--production']
 - name: gcr.io/$PROJECT_ID/envsubst
   id: Substitute
   env: ['SERVICE_IP=$_SERVICE_IP']
