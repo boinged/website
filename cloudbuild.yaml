@@ -3,6 +3,11 @@ steps:
   id: Install
   entrypoint: npm
   args: ['install']
+- name: ubuntu
+  args: ['ls', 'node_modules']
+- name: node:12
+  entrypoint: npm
+  args: ['ls', 'api-proto']
 - name: node:12
   id: Test
   entrypoint: npm
