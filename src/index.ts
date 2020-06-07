@@ -25,7 +25,7 @@ const start = async (): Promise<void> => {
 
 	const contentSDK = new ContentSDK(Config.serviceIP + ':50051');
 	try {
-		await contentSDK.connect();
+		// await contentSDK.connect();
 	} catch (error) {
 		Logger.error(error);
 	}
