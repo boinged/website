@@ -1,9 +1,9 @@
 import * as path from 'path';
 
 import {ContentSDK} from 'api-sdk';
-import * as fastify from 'fastify';
-import * as helmet from 'fastify-helmet';
-import * as fastifyStatic from 'fastify-static';
+import fastify from 'fastify';
+import helmet from 'fastify-helmet';
+import fastifyStatic from 'fastify-static';
 
 import {Config} from './config/config';
 import {Router} from './router/router';
