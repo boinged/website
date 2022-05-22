@@ -1,17 +1,17 @@
 steps:
-- name: node:12
+- name: node:16
   id: Install
   entrypoint: npm
   args: ['ci']
-- name: node:12
+- name: node:16
   id: Test
   entrypoint: npm
   args: ['test']
-- name: node:12
+- name: node:16
   id: Build
   entrypoint: npm
   args: ['run', 'build']
-- name: node:12
+- name: node:16
   id: Prune
   entrypoint: npm
   args: ['ci', '--production']
@@ -19,8 +19,6 @@ steps:
   id: Substitute
   env: ['SERVICE_IP=$_SERVICE_IP']
   args: ['app.yaml']
-- name: ubuntu
-  args: ['ls', 'node_modules']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   args: ['app', 'deploy']
