@@ -1,9 +1,9 @@
 import * as path from 'path';
 
+import {fastifyHelmet} from '@fastify/helmet';
+import fastifyStatic from '@fastify/static';
 import {ContentSDK} from 'api-sdk';
 import fastify from 'fastify';
-import helmet from 'fastify-helmet';
-import fastifyStatic from 'fastify-static';
 
 import {Config} from './config/config';
 import {Router} from './router/router';
@@ -13,7 +13,7 @@ const start = async (): Promise<void> => {
 	Logger.info(process.versions);
 
 	const server = fastify({logger: Logger});
-	server.register(helmet);
+	server.register(fastifyHelmet);
 
 	server.register(fastifyStatic, {
 		root: path.join(__dirname, '../../public')

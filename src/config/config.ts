@@ -1,5 +1,5 @@
 export class Config {
-    static port = Number(process.env.PORT) || 8080;
+	static port = Number(process.env.PORT) || 8080;
 
-    static serviceIP = process.env.SERVICE_IP;
+	static serviceIP = process.env.SERVICE_IP;
 }
