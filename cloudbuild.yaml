@@ -1,21 +1,21 @@
 steps:
 - name: node:16
-  id: Install
+  id: Install server
   dir: server
   entrypoint: npm
   args: ['ci']
 - name: node:16
-  id: Test
+  id: Test server
   dir: server
   entrypoint: npm
   args: ['test']
 - name: node:16
-  id: Build
+  id: Build server
   dir: server
   entrypoint: npm
   args: ['run', 'build']
 - name: node:16
-  id: Prune
+  id: Prune server
   dir: server
   entrypoint: npm
   args: ['ci', '--production']
@@ -24,6 +24,24 @@ steps:
   dir: server
   env: ['SERVICE_IP=$_SERVICE_IP']
   args: ['app.yaml']
+- name: node:16
+  id: Install client
+  dir: client
+  entrypoint: npm
+  args: ['ci']
+- name: node:16
+  id: Build client
+  dir: client
+  entrypoint: npm
+  args: ['run', 'build']
+- name: ubuntu
+  id: Copy client
+  entrypoint: bash
+  args: 
+    - -c
+    - |
+      mv client/dist server/public
+      ls server
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   dir: server
