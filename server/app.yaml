@@ -1,0 +1,4 @@
+runtime: nodejs16
+
+env_variables:
+  SERVICE_IP: ${SERVICE_IP}

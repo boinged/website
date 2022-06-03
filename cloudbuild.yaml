@@ -1,24 +1,30 @@
 steps:
 - name: node:16
   id: Install
+  dir: server
   entrypoint: npm
   args: ['ci']
 - name: node:16
   id: Test
+  dir: server
   entrypoint: npm
   args: ['test']
 - name: node:16
   id: Build
+  dir: server
   entrypoint: npm
   args: ['run', 'build']
 - name: node:16
   id: Prune
+  dir: server
   entrypoint: npm
   args: ['ci', '--production']
 - name: gcr.io/$PROJECT_ID/envsubst
   id: Substitute
+  dir: server
   env: ['SERVICE_IP=$_SERVICE_IP']
   args: ['app.yaml']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
+  dir: server
   args: ['app', 'deploy']
