@@ -15,6 +15,12 @@
 		}
 	}
 
+	let isHowVisible = false
+
+	function toggleHow() {
+		isHowVisible = !isHowVisible
+	}
+
 	let promise = getMessage()
 </script>
 
@@ -26,5 +32,10 @@
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
-	<How />
+
+	<a href={'#'} on:click={toggleHow}>How it works</a>
+
+	{#if isHowVisible}
+		<How/>
+	{/if}
 </main>
