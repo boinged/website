@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type {IMessageResult} from './iMessageResult'
+
 	import How from './lib/How.svelte'
 
 	async function getMessage() {
@@ -8,8 +10,8 @@
 		}
 
 		try {
-			let message = await response.json()
-			return message
+			let messageResult = await response.json() as IMessageResult;
+			return messageResult.message
 		} catch(error) {
 			throw new Error(`JSON error!`)
 		}
