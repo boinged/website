@@ -1,7 +1,7 @@
 import {ContentSDK} from 'api-sdk';
-import {FastifyRequest} from 'fastify';
 import got from 'got';
 
+import {IBody} from '../model/iBody';
 import {Logger} from '../util/logger';
 
 import {IEndpoint} from './iEndpoint';
@@ -16,7 +16,7 @@ export class Message implements IEndpoint {
 		this.contentSDK = contentSDK;
 	}
 
-	public async execute(request: FastifyRequest): Promise<string> {
+	public async execute(body: IBody): Promise<string> {
 		/*
 		try {
 			const grpcResult = await this.contentSDK.getContent();

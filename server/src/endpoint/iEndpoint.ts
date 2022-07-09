@@ -1,5 +1,5 @@
-import {FastifyRequest} from 'fastify';
+import {IBody} from '../model/iBody';
 
 export interface IEndpoint {
-	execute(request: FastifyRequest): Promise<string>;
+	execute(body: IBody): Promise<string>;
 }

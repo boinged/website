@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import {fastifyHelmet} from '@fastify/helmet';
+import fastifyHelmet from '@fastify/helmet';
 import fastifyStatic from '@fastify/static';
 import {ContentSDK} from 'api-sdk';
 import fastify from 'fastify';
@@ -33,7 +33,10 @@ const start = async (): Promise<void> => {
 	const router = new Router(Config.serviceIP, contentSDK);
 	server.register(router.applyRoutes.bind(router));
 
-	await server.listen(Config.port, '::');
+	await server.listen({
+		host: '::',
+		port: Config.port
+	});
 };
 
 start();

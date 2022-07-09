@@ -1,9 +1,9 @@
-import {FastifyRequest} from 'fastify';
+import {IBody} from '../model/iBody';
 
 import {IEndpoint} from './iEndpoint';
 
 export class Health implements IEndpoint {
-	async execute(request: FastifyRequest): Promise<string> {
+	async execute(body: IBody): Promise<string> {
 		return 'OK';
 	}
 }

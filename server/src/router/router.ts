@@ -3,6 +3,7 @@ import {FastifyInstance} from 'fastify';
 
 import {Health} from '../endpoint/health';
 import {Message} from '../endpoint/message';
+import {IBody} from '../model/iBody';
 
 export class Router {
 	contentSDK: ContentSDK;
@@ -15,10 +16,10 @@ export class Router {
 	}
 
 	async applyRoutes(server: FastifyInstance): Promise<void> {
-		const health = new Health();
-		server.get('/healthz', health.execute.bind(health));
-
 		const message = new Message(this.serviceIP, this.contentSDK);
-		server.get('/message', message.execute.bind(message));
+		server.get('/message', (request) => message.execute(request.body as IBody));
+
+		const health = new Health();
+		server.get('*', (request) => health.execute(request.body as IBody));
 	}
 }
