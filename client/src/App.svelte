@@ -1,4 +1,6 @@
 <script lang="ts">
+	import {onMount} from 'svelte';
+
 	import type {IMessageResult} from './iMessageResult'
 
 	import How from './lib/How.svelte'
@@ -24,6 +26,13 @@
 	}
 
 	let promise = getMessage()
+
+	onMount(() => {
+		let websocket = new WebSocket('wss://api-finland-43oubvregq-lz.a.run.app/connect');
+		websocket.addEventListener('open', () => {
+			console.log('opened');
+		});
+	});
 </script>
 
 <main>
