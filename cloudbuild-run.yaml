@@ -15,7 +15,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   id: Push
   args: ['push', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA']
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   id: Deploy
   entrypoint: gcloud
   args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '--region', '$LOCATION']

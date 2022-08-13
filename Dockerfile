@@ -17,7 +17,7 @@ RUN apk add --no-cache tini
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/server/node_modules node_modules
-COPY --from=builder /usr/src/server/dist dist
+COPY --from=builder /usr/src/server/dist/src dist
 COPY --from=builder /usr/src/client/dist public
 
 USER node
