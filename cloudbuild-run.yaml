@@ -1,22 +1,21 @@
 steps:
-  - name: node:16
-    id: Install
-    entrypoint: npm
-    args: ['ci']
-  - name: node:16
-    id: Test
-    entrypoint: npm
-    args: ['test']
-  - name: 'gcr.io/cloud-builders/docker'
-    id: Build
-    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    id: Push
-    args: ['push', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA']
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: Deploy
-    entrypoint: gcloud
-    args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '--region', '$LOCATION']
-  images:
-  - eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA
-  
+- name: node:16
+  id: Install
+  entrypoint: npm
+  args: ['ci']
+- name: node:16
+  id: Test
+  entrypoint: npm
+  args: ['test']
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build
+  args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args: ['push', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: Deploy
+  entrypoint: gcloud
+  args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '--region', '$LOCATION']
+images:
+- eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA
