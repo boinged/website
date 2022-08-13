@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import fastifyHelmet from '@fastify/helmet';
+import helmet from '@fastify/helmet';
 import fastifyStatic from '@fastify/static';
 import {ContentSDK} from 'api-sdk';
 import fastify from 'fastify';
@@ -10,12 +10,10 @@ import {Router} from './router/router';
 import {Logger} from './util/logger';
 
 const start = async (): Promise<void> => {
-	Logger.info(process.versions);
+	const webServer = fastify({logger: Logger});
+	await webServer.register(helmet);
 
-	const server = fastify({logger: Logger});
-	server.register(fastifyHelmet);
-
-	server.register(fastifyStatic, {
+	webServer.register(fastifyStatic, {
 		root: path.join(__dirname, '../../public')
 	});
 
@@ -31,9 +29,9 @@ const start = async (): Promise<void> => {
 	}
 
 	const router = new Router(Config.serviceIP, contentSDK);
-	server.register(router.applyRoutes.bind(router));
+	webServer.register(router.applyRoutes.bind(router));
 
-	await server.listen({
+	await webServer.listen({
 		host: '::',
 		port: Config.port
 	});
