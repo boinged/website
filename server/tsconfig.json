@@ -5,10 +5,10 @@
         "outDir": "dist",
         "sourceMap": true,
         "strict": true,
-        "target": "es2021"
+        "target": "es2022"
     },
     "include": [
         "src/**/*",
-        "spec/**/*"
+        "test/**/*"
     ]
 }

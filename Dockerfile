@@ -1,4 +1,4 @@
-FROM node:16.16-alpine AS builder
+FROM node:18.12-alpine AS builder
 RUN apk --no-cache add git
 
 WORKDIR /usr/src/server
@@ -12,7 +12,7 @@ copy client/ .
 RUN npm ci
 RUN npm run build
 
-FROM node:16.16-alpine
+FROM node:18.12-alpine
 RUN apk add --no-cache tini
 WORKDIR /usr/src/app
 
@@ -22,4 +22,4 @@ COPY --from=builder /usr/src/client/dist public
 
 USER node
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["node", "-r", "source-map-support/register", "dist/src/index.js"]
+CMD ["node", "--enable-source-maps", "dist/src/index.js"]

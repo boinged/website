@@ -1,23 +1,23 @@
 steps:
-- name: node:16
-  id: Install server
-  dir: server
+- name: node:18
   entrypoint: npm
   args: ['ci']
-- name: node:16
-  id: Test server
   dir: server
+  id: Install server
+- name: node:18
   entrypoint: npm
   args: ['test']
-- name: 'gcr.io/cloud-builders/docker'
-  id: Build
+  dir: server
+  id: Test server
+- name: docker:20
   args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  id: Push
+  id: Build
+- name: docker:20
   args: ['push', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA']
+  id: Push
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
-  id: Deploy
   entrypoint: gcloud
   args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '--region', '$LOCATION']
+  id: Deploy
 images:
 - eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA
