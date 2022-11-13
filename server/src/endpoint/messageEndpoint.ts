@@ -1,11 +1,12 @@
 import {ContentSDK} from 'api-sdk';
 
 import {IBody} from '../model/iBody';
+import {IMessageResult} from '../model/iMessageResult';
 import {Logger} from '../util/logger';
 
 import {IEndpoint} from './iEndpoint';
 
-export class Message implements IEndpoint {
+export class MessageEndpoint implements IEndpoint {
 	serviceIP: string;
 
 	contentSDK: ContentSDK;
@@ -15,7 +16,7 @@ export class Message implements IEndpoint {
 		this.contentSDK = contentSDK;
 	}
 
-	public async execute(body: IBody): Promise<string> {
+	public async execute(body: IBody): Promise<IMessageResult> {
 		/*
 		try {
 			const grpcResult = await this.contentSDK.getContent();
@@ -26,13 +27,12 @@ export class Message implements IEndpoint {
 		}
 		*/
 
-		let result = '';
+		const result = {} as IMessageResult;
 		try {
 			const url = `http://${this.serviceIP}/content`;
 			const response = await fetch(url);
 			const json = await response.json();
-			result = json.message;
-			
+			Object.assign(result, json);
 		} catch (error) {
 			Logger.error(this.constructor.name, {error: (error as Error).stack});
 		}
