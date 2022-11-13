@@ -1,5 +1,4 @@
 import {ContentSDK} from 'api-sdk';
-import got from 'got';
 
 import {IBody} from '../model/iBody';
 import {Logger} from '../util/logger';
@@ -29,7 +28,11 @@ export class Message implements IEndpoint {
 
 		let result = '';
 		try {
-			result = await got('content', {prefixUrl: `http://${this.serviceIP}`}).json();
+			const url = `http://${this.serviceIP}/content`;
+			const response = await fetch(url);
+			const json = await response.json();
+			result = json.message;
+			
 		} catch (error) {
 			Logger.error(this.constructor.name, {error: (error as Error).stack});
 		}
