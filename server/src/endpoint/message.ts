@@ -31,7 +31,7 @@ export class Message implements IEndpoint {
 		try {
 			result = await got('content', {prefixUrl: `http://${this.serviceIP}`}).json();
 		} catch (error) {
-			Logger.error(error);
+			Logger.error(this.constructor.name, {error: (error as Error).stack});
 		}
 		return result;
 	}

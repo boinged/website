@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import helmet from '@fastify/helmet';
-import fastifyStatic from '@fastify/static';
+import * as fastifyStatic from '@fastify/static';
 import {ContentSDK} from 'api-sdk';
 import fastify from 'fastify';
 
@@ -10,7 +10,7 @@ import {Router} from './router/router';
 import {Logger} from './util/logger';
 
 const start = async (): Promise<void> => {
-	const webServer = fastify({logger: Logger});
+	const webServer = fastify();
 	await webServer.register(helmet);
 
 	webServer.register(fastifyStatic, {
@@ -25,7 +25,7 @@ const start = async (): Promise<void> => {
 	try {
 		// await contentSDK.connect();
 	} catch (error) {
-		Logger.error(error);
+		Logger.error('index', {error: (error as Error).stack});
 	}
 
 	const router = new Router(Config.serviceIP, contentSDK);

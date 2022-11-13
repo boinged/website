@@ -1,3 +1,9 @@
-import {pino} from 'pino';
+export class Logger {
+	static error(source: string, message: Record<string, unknown>): void {
+		console.error({source, ...message});
+	}
 
-export const Logger = pino();
+	static info(source: string, message: Record<string, unknown>): void {
+		console.info({source, ...message});
+	}
+}

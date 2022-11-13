@@ -20,6 +20,6 @@ export class Router {
 		server.get('/message', (request) => message.execute(request.body as IBody));
 
 		const health = new Health();
-		server.get('*', (request) => health.execute(request.body as IBody));
+		server.get('/healthy', (request) => health.execute(request.body as IBody));
 	}
 }

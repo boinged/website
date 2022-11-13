@@ -1,14 +1,14 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "dist",
-        "sourceMap": true,
-        "strict": true,
-        "target": "es2022"
-    },
-    "include": [
-        "src/**/*",
-        "test/**/*"
-    ]
+	"compilerOptions": {
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"outDir": "dist",
+		"sourceMap": true,
+		"strict": true,
+		"target": "es2022"
+	},
+	"include": [
+		"src/**/*",
+		"test/**/*"
+	]
 }
