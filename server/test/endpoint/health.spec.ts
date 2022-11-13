@@ -19,7 +19,7 @@ describe('health', () => {
 	describe('execute', () => {
 		it('replies with a health string', async () => {
 			const reply = await endpoint.execute(body);
-			assert.equal(reply, 'OK');
+			assert.deepEqual(reply, {health: 'OK'});
 		});
 	});
 });

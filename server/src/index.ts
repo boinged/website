@@ -29,12 +29,14 @@ const start = async (): Promise<void> => {
 	}
 
 	const router = new Router(Config.serviceIP, contentSDK);
+
 	webServer.register(router.applyRoutes.bind(router));
 
 	await webServer.listen({
 		host: '::',
 		port: Config.port
 	});
+	Logger.info('index', {info: `web server started on port ${Config.port}`});
 };
 
 start();
