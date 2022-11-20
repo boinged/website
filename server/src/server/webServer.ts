@@ -21,7 +21,7 @@ export class WebServer {
 		await this.server.register(helmet);
 		
 		this.server.register(fastifyStatic, {
-			root: path.join(__dirname, '../../public')
+			root: path.join(__dirname, '../../../public')
 		});
 
 		this.router.applyRoutes(this.server);
