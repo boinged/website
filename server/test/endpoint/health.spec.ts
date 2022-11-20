@@ -2,7 +2,7 @@ import * as assert from 'node:assert/strict';
 import {before, beforeEach, describe, it} from 'node:test';
 
 import {HealthEndpoint} from '../../src/endpoint/healthEndpoint';
-import {IBody} from '../../src/model/iBody';
+import {IBody} from '../../src/model/body';
 
 describe('health', () => {
 	let endpoint: HealthEndpoint;

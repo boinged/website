@@ -1,7 +1,7 @@
-import {IBody} from '../model/iBody';
-import {IHealthResult} from '../model/iHealthResult';
+import {IBody} from '../model/body';
+import {IHealthResult} from '../model/healthResult';
 
-import {IEndpoint} from './iEndpoint';
+import {IEndpoint} from './endpoint';
 
 export class HealthEndpoint implements IEndpoint {
 	async execute(body: IBody): Promise<IHealthResult> {

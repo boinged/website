@@ -1,10 +1,10 @@
 import {ContentSDK} from 'api-sdk';
 
-import {IBody} from '../model/iBody';
-import {IMessageResult} from '../model/iMessageResult';
+import {IBody} from '../model/body';
+import {IMessageResult} from '../model/messageResult';
 import {Logger} from '../util/logger';
 
-import {IEndpoint} from './iEndpoint';
+import {IEndpoint} from './endpoint';
 
 export class MessageEndpoint implements IEndpoint {
 	serviceIP: string;

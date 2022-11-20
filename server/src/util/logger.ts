@@ -1,9 +1,11 @@
 export class Logger {
 	static error(source: string, message: Record<string, unknown>): void {
-		console.error({source, ...message});
+		const log = JSON.stringify({source, ...message});
+		console.error(log);
 	}
 
 	static info(source: string, message: Record<string, unknown>): void {
-		console.info({source, ...message});
+		const log = JSON.stringify({source, ...message});
+		console.info(log);
 	}
 }

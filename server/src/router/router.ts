@@ -3,7 +3,7 @@ import {FastifyInstance} from 'fastify';
 
 import {HealthEndpoint} from '../endpoint/healthEndpoint';
 import {MessageEndpoint} from '../endpoint/messageEndpoint';
-import {IBody} from '../model/iBody';
+import {IBody} from '../model/body';
 
 export class Router {
 	contentSDK: ContentSDK;

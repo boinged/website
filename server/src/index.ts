@@ -1,22 +1,11 @@
-import * as path from 'path';
-
-import helmet from '@fastify/helmet';
-import * as fastifyStatic from '@fastify/static';
 import {ContentSDK} from 'api-sdk';
-import fastify from 'fastify';
 
 import {Config} from './config/config';
 import {Router} from './router/router';
+import {WebServer} from './server/webServer';
 import {Logger} from './util/logger';
 
 const start = async (): Promise<void> => {
-	const webServer = fastify();
-	await webServer.register(helmet);
-
-	webServer.register(fastifyStatic, {
-		root: path.join(__dirname, '../../public')
-	});
-
 	if (!Config.serviceIP) {
 		throw new Error('missing service ip');
 	}
@@ -29,14 +18,8 @@ const start = async (): Promise<void> => {
 	}
 
 	const router = new Router(Config.serviceIP, contentSDK);
-
-	webServer.register(router.applyRoutes.bind(router));
-
-	await webServer.listen({
-		host: '::',
-		port: Config.port
-	});
-	Logger.info('index', {info: `web server started on port ${Config.port}`});
+	const webServer = new WebServer(router);
+	await webServer.start(Config.port);
 };
 
 start();
