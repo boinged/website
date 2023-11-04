@@ -1,23 +1,21 @@
 steps:
-- name: node:18
+- name: node:18-bullseye
   entrypoint: npm
   args: ['ci']
   dir: server
   id: Install server
-- name: node:18
+- name: node:18-bullseye
   entrypoint: npm
   args: ['test']
   dir: server
   id: Test server
 - name: docker:20
-  args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '.']
+  args: ['build', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/images/web:$SHORT_SHA', '.']
   id: Build
 - name: docker:20
-  args: ['push', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA']
+  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/images/web:$SHORT_SHA']
   id: Push
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud
-  args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA', '--region', '$LOCATION']
+  args: ['run', 'deploy', '$_SERVICE_NAME', '--image', 'europe-north1-docker.pkg.dev/$PROJECT_ID/images/web:$SHORT_SHA', '--region', '$LOCATION']
   id: Deploy
-images:
-- eu.gcr.io/$PROJECT_ID/web:$SHORT_SHA
